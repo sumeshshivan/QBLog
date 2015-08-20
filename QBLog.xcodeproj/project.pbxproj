@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DDB71361B833D9200C5C4FD /* QBLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB71351B833D9200C5C4FD /* QBLogger.m */; };
 		3DEC5D371B81D1C200ED7E38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC5D361B81D1C200ED7E38 /* main.m */; };
 		3DEC5D3A1B81D1C300ED7E38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC5D391B81D1C300ED7E38 /* AppDelegate.m */; };
 		3DEC5D3D1B81D1C300ED7E38 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC5D3C1B81D1C300ED7E38 /* ViewController.m */; };
@@ -14,6 +15,7 @@
 		3DEC5D421B81D1C300ED7E38 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DEC5D411B81D1C300ED7E38 /* Images.xcassets */; };
 		3DEC5D451B81D1C300ED7E38 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DEC5D431B81D1C300ED7E38 /* LaunchScreen.xib */; };
 		3DEC5D511B81D1C300ED7E38 /* QBLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC5D501B81D1C300ED7E38 /* QBLogTests.m */; };
+		3DEC5D5D1B81D1E700ED7E38 /* QBLogService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC5D5B1B81D1E700ED7E38 /* QBLogService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3DDB71341B833D9200C5C4FD /* QBLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBLogger.h; sourceTree = "<group>"; };
+		3DDB71351B833D9200C5C4FD /* QBLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBLogger.m; sourceTree = "<group>"; };
 		3DEC5D311B81D1C200ED7E38 /* QBLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QBLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DEC5D351B81D1C200ED7E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DEC5D361B81D1C200ED7E38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 		3DEC5D4A1B81D1C300ED7E38 /* QBLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QBLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DEC5D4F1B81D1C300ED7E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DEC5D501B81D1C300ED7E38 /* QBLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QBLogTests.m; sourceTree = "<group>"; };
+		3DEC5D5A1B81D1E700ED7E38 /* QBLogService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBLogService.h; sourceTree = "<group>"; };
+		3DEC5D5B1B81D1E700ED7E38 /* QBLogService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBLogService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,10 @@
 		3DEC5D331B81D1C200ED7E38 /* QBLog */ = {
 			isa = PBXGroup;
 			children = (
+				3DDB71341B833D9200C5C4FD /* QBLogger.h */,
+				3DDB71351B833D9200C5C4FD /* QBLogger.m */,
+				3DEC5D5A1B81D1E700ED7E38 /* QBLogService.h */,
+				3DEC5D5B1B81D1E700ED7E38 /* QBLogService.m */,
 				3DEC5D381B81D1C200ED7E38 /* AppDelegate.h */,
 				3DEC5D391B81D1C300ED7E38 /* AppDelegate.m */,
 				3DEC5D3B1B81D1C300ED7E38 /* ViewController.h */,
@@ -221,6 +231,8 @@
 			files = (
 				3DEC5D3D1B81D1C300ED7E38 /* ViewController.m in Sources */,
 				3DEC5D3A1B81D1C300ED7E38 /* AppDelegate.m in Sources */,
+				3DEC5D5D1B81D1E700ED7E38 /* QBLogService.m in Sources */,
+				3DDB71361B833D9200C5C4FD /* QBLogger.m in Sources */,
 				3DEC5D371B81D1C200ED7E38 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +424,7 @@
 				3DEC5D561B81D1C300ED7E38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3DEC5D571B81D1C300ED7E38 /* Build configuration list for PBXNativeTarget "QBLogTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +433,7 @@
 				3DEC5D591B81D1C300ED7E38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
