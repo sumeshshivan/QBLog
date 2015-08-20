@@ -27,6 +27,8 @@ typedef enum {
     
 }
 
+@property (nonatomic) QLogLevel logLevel;
+
 + (QBLogService *)sharedInstance;
 
 //

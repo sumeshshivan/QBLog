@@ -19,7 +19,7 @@
 
 @implementation QBLogService
 
-static QLogLevel p_logLevel = QLogLevel_DEBUG;
+//static QLogLevel p_logLevel = QLogLevel_DEBUG;
 static NSString *logsFolder = @"Logs";
 
 + (QBLogService *)sharedInstance {
@@ -36,11 +36,13 @@ static NSString *logsFolder = @"Logs";
     self = [super init];
     if (self) {
         
+        _logLevel = QLogLevel_DEBUG;
+        
         // Create Logs directory in Documents folder if does not exists.
         NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         
         _logFolderPath = [documentsDirectory stringByAppendingPathComponent:logsFolder];
-        
+                
         _fileManager = [NSFileManager defaultManager];
         BOOL isDir;
         BOOL exists = [_fileManager fileExistsAtPath:_logFolderPath isDirectory:&isDir];
@@ -74,7 +76,7 @@ static NSString *logsFolder = @"Logs";
         
         NSString *dataString = [NSString stringWithFormat:@"<%@> [%@] : %@\n", time, level, logString];
         
-        NSLog(@"%@",logString);
+        NSLog(@"[%@] %@",level,logString);
         
         //append data to the file
         if ( !m_fh )
@@ -118,35 +120,35 @@ static NSString *logsFolder = @"Logs";
 
 - (void) info:(NSString*)format, ...
 {
-    if (p_logLevel >= QLogLevel_INFO) {
+    if (_logLevel >= QLogLevel_INFO) {
         [self logWithLevel:@"INFO " format:format];
     }
 }
 
 - (void) warning:(NSString*)format, ...
 {
-    if (p_logLevel >= QLogLevel_WARNING) {
+    if (_logLevel >= QLogLevel_WARNING) {
         [self logWithLevel:@"WARN " format:format];
     }
 }
 
 - (void) error:(NSString*)format, ...
 {
-    if (p_logLevel >= QLogLevel_ERROR) {
+    if (_logLevel >= QLogLevel_ERROR) {
         [self logWithLevel:@"ERROR" format:format];
     }
 }
 
 - (void) debug:(NSString*)format, ...
 {
-    if (p_logLevel >= QLogLevel_DEBUG) {
+    if (_logLevel >= QLogLevel_DEBUG) {
         [self logWithLevel:@"DEBUG" format:format];
     }
 }
 
 - (void) trace:(NSString*)format, ...
 {
-    if (p_logLevel >= QLogLevel_TRACE) {
+    if (_logLevel >= QLogLevel_TRACE) {
         [self logWithLevel:@"TRACE" format:format];
     }
 }

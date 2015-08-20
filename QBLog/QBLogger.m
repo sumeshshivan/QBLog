@@ -7,36 +7,33 @@
 //
 
 #import "QBLogger.h"
-#import "QBLogService.h"
-
-QBLogService *qbLogService;
 
 void QBLogError(NSString *str, ...) {
     
-    qbLogService = [QBLogService sharedInstance];
-    [qbLogService error:str];
+    [[QBLogService sharedInstance] error:str];
 }
 
 void QBLogWarning(NSString *str, ...) {
     
-    qbLogService = [QBLogService sharedInstance];
-    [qbLogService warning:str];
+    [[QBLogService sharedInstance] warning:str];
 }
 
 void QBLogInfo(NSString *str, ...) {
     
-    qbLogService = [QBLogService sharedInstance];
-    [qbLogService info:str];
+    [[QBLogService sharedInstance] info:str];
 }
 
 void QBLogTrace(NSString *str, ...) {
     
-    qbLogService = [QBLogService sharedInstance];
-    [qbLogService trace:str];
+    [[QBLogService sharedInstance] trace:str];
 }
 
 void QBLogDebug(NSString *str, ...) {
     
-    qbLogService = [QBLogService sharedInstance];
-    [qbLogService debug:str];
+    [[QBLogService sharedInstance] debug:str];
+}
+
+void QBLogSetLevel(QLogLevel level) {
+    
+    [[QBLogService sharedInstance] setLogLevel:level];
 }

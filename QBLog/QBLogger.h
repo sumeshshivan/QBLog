@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "QBLogService.h"
 
 void QBLogError(NSString *str,...);
 void QBLogWarning(NSString *str,...);
 void QBLogInfo(NSString *str,...);
 void QBLogTrace(NSString *str,...);
 void QBLogDebug(NSString *str,...);
+void QBLogSetLevel(QLogLevel level);
