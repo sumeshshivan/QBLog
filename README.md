@@ -33,6 +33,6 @@ By default Log Level is set to QLogLevel_INFO.
 
 ###Log files
 
-* Log files are created for each day inside Logs folder under the application's Documents directory.
+* Log files are created for each day with date as file name inside Logs folder under the application's Documents directory.
 
 
