@@ -25,10 +25,10 @@ By default Log Level is set to QLogLevel_INFO.
 
 * Then change your NSlog messages accordingly
   * Info log messages - `QBLogInfo(@"Info log message");`
-  * Error log messges - `QBLogError(@"Error log message");`
-  * Warning log messges - `QBLogWarning(@"Warning log message");`
-  * Trace log messges - `QBLogTrace(@"Trace log message");`
-  * Debug log messges - `QBLogDebug(@"Debug log message");`
+  * Error log messages - `QBLogError(@"Error log message");`
+  * Warning log messages - `QBLogWarning(@"Warning log message");`
+  * Trace log messages - `QBLogTrace(@"Trace log message");`
+  * Debug log messages - `QBLogDebug(@"Debug log message");`
   
 
 ###Log files
