@@ -25,8 +25,11 @@ For example:
   
 
 * Then change your NSlog messages to one of the follwing accordingly
-  * QLogLevel_NONE
-  * QLogLevel_ERROR
+  * QBLogInfo(@"Info log message");
+  * QBLogError(@"Error log message");
+  * QBLogWarning(@"Warning log message");
+  * QBLogTrace(@"Trace log message");
+  * QBLogDebug(@"Debug log message");
   
 
 
