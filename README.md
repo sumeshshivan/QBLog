@@ -18,12 +18,15 @@ A fast &amp; simple logging to file framework for iOS
   * QLogLevel_TRACE
   * QLogLevel_DEBUG
  
-  * By default Log Level is set to QLogLevel_INFO.
+By default Log Level is set to QLogLevel_INFO.
  
-  * For example:
+For example:
   QBLogSetLevel(QLogLevel_DEBUG);
   
-- Then change your NSlog messages to one of the follwing accordingly.
+
+* Then change your NSlog messages to one of the follwing accordingly
+  * QLogLevel_NONE
+  * QLogLevel_ERROR
   
 
 
