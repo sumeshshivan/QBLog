@@ -8,11 +8,11 @@ A fast &amp; simple logging to file framework for iOS
 - Drag the `QBLog` folder into your project.
 - `#import "QBLogger.h"` where appropriate. 
 
-##Usage
+###Usage
 
-- Set Log Level to one of the following levels.     
-  ** QLogLevel_NONE      = -1
-* QLogLevel_ERROR     = 0
+* Set Log Level to one of the following levels.     
+** QLogLevel_NONE      = -1
+ QLogLevel_ERROR     = 0
 - QLogLevel_WARNING   = 1
 - QLogLevel_INFO      = 2
 - QLogLevel_TRACE     = 3
