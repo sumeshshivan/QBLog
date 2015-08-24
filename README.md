@@ -31,4 +31,8 @@ By default Log Level is set to QLogLevel_INFO.
   * QBLogDebug(@"Debug log message");
   
 
+###Log files
+
+* Log files are created for each day inside Logs folder under the application's Documents directory.
+
 
