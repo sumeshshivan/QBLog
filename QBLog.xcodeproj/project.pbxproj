@@ -66,6 +66,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DE11EBC1B8B076A005D8172 /* QBLog */ = {
+			isa = PBXGroup;
+			children = (
+				3DDB71341B833D9200C5C4FD /* QBLogger.h */,
+				3DDB71351B833D9200C5C4FD /* QBLogger.m */,
+				3DEC5D5A1B81D1E700ED7E38 /* QBLogService.h */,
+				3DEC5D5B1B81D1E700ED7E38 /* QBLogService.m */,
+			);
+			name = QBLog;
+			sourceTree = "<group>";
+		};
 		3DEC5D281B81D1C200ED7E38 = {
 			isa = PBXGroup;
 			children = (
@@ -87,10 +98,7 @@
 		3DEC5D331B81D1C200ED7E38 /* QBLog */ = {
 			isa = PBXGroup;
 			children = (
-				3DDB71341B833D9200C5C4FD /* QBLogger.h */,
-				3DDB71351B833D9200C5C4FD /* QBLogger.m */,
-				3DEC5D5A1B81D1E700ED7E38 /* QBLogService.h */,
-				3DEC5D5B1B81D1E700ED7E38 /* QBLogService.m */,
+				3DE11EBC1B8B076A005D8172 /* QBLog */,
 				3DEC5D381B81D1C200ED7E38 /* AppDelegate.h */,
 				3DEC5D391B81D1C300ED7E38 /* AppDelegate.m */,
 				3DEC5D3B1B81D1C300ED7E38 /* ViewController.h */,
