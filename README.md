@@ -11,12 +11,12 @@ A fast &amp; simple logging to file framework for iOS
 ##Usage
 
 - Set Log Level to one of the following levels.     
-    --QLogLevel_NONE      = -1,
-    QLogLevel_ERROR     = 0,
-    QLogLevel_WARNING   = 1,
-    QLogLevel_INFO      = 2,
-    QLogLevel_TRACE     = 3,
-    QLogLevel_DEBUG     = 4
+QLogLevel_NONE      = -1
+QLogLevel_ERROR     = 0
+QLogLevel_WARNING   = 1
+QLogLevel_INFO      = 2
+QLogLevel_TRACE     = 3
+QLogLevel_DEBUG     = 4
 
   By default Log Level is set to QLogLevel_INFO.
 
