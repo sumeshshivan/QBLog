@@ -17,9 +17,9 @@ A fast &amp; simple logging to file framework for iOS
   * QLogLevel_INFO
   * QLogLevel_TRACE
   * QLogLevel_DEBUG
-  * 
+  
   * By default Log Level is set to QLogLevel_INFO.
-  * 
+  
   * For example:
   QBLogSetLevel(QLogLevel_DEBUG);
   
