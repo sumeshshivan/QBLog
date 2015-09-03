@@ -38,35 +38,43 @@ static NSString *logsFolder = @"Logs";
         
         _logLevel = QLogLevel_DEBUG;
         
-        // Create Logs directory in Documents folder if does not exists.
         NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         
         _logFolderPath = [documentsDirectory stringByAppendingPathComponent:logsFolder];
                 
         _fileManager = [NSFileManager defaultManager];
+        
+        // Check if Logs directory in Documents folder exists.
         BOOL isDir;
         BOOL exists = [_fileManager fileExistsAtPath:_logFolderPath isDirectory:&isDir];
         
+        // Create Logs directory in Documents folder if does not exists.
         if (!exists) {
+            
             NSError *error = nil;
-            [[NSFileManager defaultManager] createDirectoryAtPath:_logFolderPath withIntermediateDirectories:NO attributes:nil error:&error];
+            [_fileManager createDirectoryAtPath:_logFolderPath withIntermediateDirectories:NO attributes:nil error:&error];
+            
+            // Exclude folder from backup to cloud
+            NSURL *folderURL = [ NSURL fileURLWithPath: _logFolderPath ];
+            [folderURL setResourceValue: [ NSNumber numberWithBool: YES ] forKey: NSURLIsExcludedFromBackupKey error: nil ];
+            
         }
+        NSLog(@"Log Folder : %@",_logFolderPath);
     }
     return self;
 }
 
-- (void) logWithLevel:(NSString*)level format:(NSString*)format, ...
+
+
+- (void) logWithLevel:(NSString*)level logMessage:logString
 {
     
     NSData *data = nil;
     
     @try {
+        
         // Create Log file for the date if it does not exists.
         [self createLogFile];
-       
-        va_list args;
-        va_start(args, format);
-        NSString *logString = [[NSString alloc] initWithFormat:format arguments:args];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss:SSS";
@@ -74,11 +82,12 @@ static NSString *logsFolder = @"Logs";
        
         NSString *time = [formatter stringFromDate:[NSDate date]];
         
+        // Construct log message in the formate <yyyy-MM-dd> [Log Level] : Log message.
         NSString *dataString = [NSString stringWithFormat:@"<%@> [%@] : %@\n", time, level, logString];
         
         NSLog(@"[%@] %@",level,logString);
         
-        //append data to the file
+        // Append log message to the log file
         if ( !m_fh )
         {
             m_fh = [NSFileHandle fileHandleForWritingAtPath:_logFilePath];
@@ -87,8 +96,7 @@ static NSString *logsFolder = @"Logs";
         [m_fh truncateFileAtOffset:[m_fh seekToEndOfFile]];
         data = [dataString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         [m_fh writeData:data];
-        
-        va_end(args);
+
     }
     @catch (NSException *exception) {
         NSLog(@"Log service Error exception");
@@ -97,6 +105,8 @@ static NSString *logsFolder = @"Logs";
         data = nil;
     }
 }
+
+#pragma mark - Log File Create and Delete Methods
 
 - (void)createLogFile {
     
@@ -110,47 +120,91 @@ static NSString *logsFolder = @"Logs";
     
     BOOL exists = [_fileManager fileExistsAtPath:_logFilePath];
     if (!exists) {
-        [[NSFileManager defaultManager] createFileAtPath:_logFilePath contents:nil attributes:nil];
+        [_fileManager createFileAtPath:_logFilePath contents:nil attributes:nil];
         m_fh = [NSFileHandle fileHandleForWritingAtPath:_logFilePath];
+        
+        // Exclude file from backup to cloud
+        NSURL *fileURL = [ NSURL fileURLWithPath: _logFilePath ];
+        [fileURL setResourceValue: [ NSNumber numberWithBool: YES ] forKey: NSURLIsExcludedFromBackupKey error: nil ];
     }
     
 }
 
+- (void) deleteLogsOlderThan:(NSInteger)days {
+    
+    // Delete all the old log files
+    NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_logFolderPath error:nil];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    
+    NSDate *deleteDate =[[NSDate date] dateByAddingTimeInterval:-1*days*24*60*60];
+    
+    for (NSString *fileName in dirContents) {
+        
+        // Remove file .txt extension
+        NSString *dateString = [fileName substringToIndex:[fileName length] - 4];
+        
+        // Create date from file name.
+        NSDate *fileDate = [dateFormatter dateFromString:dateString];
+        
+        if ([fileDate compare:deleteDate] == NSOrderedAscending) {
+            
+            NSString *filePath = [_logFolderPath stringByAppendingPathComponent:fileName];
+            
+            // Delete the log file
+            NSError *error;
+            [_fileManager removeItemAtPath:filePath error:&error];
+        }
+    }
+}
+
 #pragma  mark - Log Methods
 
-- (void) info:(NSString*)format, ...
+- (void) info:(NSString*)logString
 {
     if (_logLevel >= QLogLevel_INFO) {
-        [self logWithLevel:@"INFO " format:format];
+        [self logWithLevel:@"INFO " logMessage:logString];
     }
 }
 
-- (void) warning:(NSString*)format, ...
+- (void) warning:(NSString*)logString
 {
     if (_logLevel >= QLogLevel_WARNING) {
-        [self logWithLevel:@"WARN " format:format];
+        [self logWithLevel:@"WARN " logMessage:logString];
     }
 }
 
-- (void) error:(NSString*)format, ...
+- (void) error:(NSString*)logString
 {
     if (_logLevel >= QLogLevel_ERROR) {
-        [self logWithLevel:@"ERROR" format:format];
+        [self logWithLevel:@"ERROR" logMessage:logString];
     }
 }
 
-- (void) debug:(NSString*)format, ...
+- (void) debug:(NSString*)logString
 {
     if (_logLevel >= QLogLevel_DEBUG) {
-        [self logWithLevel:@"DEBUG" format:format];
+        [self logWithLevel:@"DEBUG" logMessage:logString];
     }
 }
 
-- (void) trace:(NSString*)format, ...
+- (void) trace:(NSString*)logString
 {
     if (_logLevel >= QLogLevel_TRACE) {
-        [self logWithLevel:@"TRACE" format:format];
+        [self logWithLevel:@"TRACE" logMessage:logString];
     }
 }
 
+#pragma mark - File backup exclude method
+
+- (void)addSkipBackupAttributeToItemAtPath:(NSString *) filePathString
+{
+    NSURL* URL= [NSURL fileURLWithPath: filePathString];
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    [URL setResourceValue: [NSNumber numberWithBool: YES] forKey: NSURLIsExcludedFromBackupKey error: &error];
+
+}
 @end

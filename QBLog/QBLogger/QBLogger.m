@@ -10,30 +10,60 @@
 
 void QBLogError(NSString *str, ...) {
     
-    [[QBLogService sharedInstance] error:str];
+    va_list args;
+    va_start(args, str);
+    NSString *logString = [[NSString alloc] initWithFormat:str arguments:args];
+    [[QBLogService sharedInstance] error:logString];
+    va_end(args);
+    
 }
 
 void QBLogWarning(NSString *str, ...) {
     
-    [[QBLogService sharedInstance] warning:str];
+    va_list args;
+    va_start(args, str);
+    NSString *logString = [[NSString alloc] initWithFormat:str arguments:args];
+    [[QBLogService sharedInstance] warning:logString];
+    va_end(args);
+    
 }
 
 void QBLogInfo(NSString *str, ...) {
     
-    [[QBLogService sharedInstance] info:str];
+    va_list args;
+    va_start(args, str);
+    NSString *logString = [[NSString alloc] initWithFormat:str arguments:args];
+    [[QBLogService sharedInstance] info:logString];
+    va_end(args);
+    
 }
 
 void QBLogTrace(NSString *str, ...) {
     
-    [[QBLogService sharedInstance] trace:str];
+    va_list args;
+    va_start(args, str);
+    NSString *logString = [[NSString alloc] initWithFormat:str arguments:args];
+    [[QBLogService sharedInstance] trace:logString];
+    va_end(args);
+
 }
 
 void QBLogDebug(NSString *str, ...) {
     
-    [[QBLogService sharedInstance] debug:str];
+    va_list args;
+    va_start(args, str);
+    NSString *logString = [[NSString alloc] initWithFormat:str arguments:args];
+    [[QBLogService sharedInstance] debug:logString];
+    va_end(args);
+    
 }
 
 void QBLogSetLevel(QLogLevel level) {
     
     [[QBLogService sharedInstance] setLogLevel:level];
+}
+
+void QBLogClear(NSInteger days) {
+    
+    [[QBLogService sharedInstance] deleteLogsOlderThan:days];
 }

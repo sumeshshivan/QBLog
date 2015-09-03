@@ -32,28 +32,34 @@ typedef enum {
 + (QBLogService *)sharedInstance;
 
 //
+// Delete the log files which are older than given number of days
+//
+- (void) deleteLogsOlderThan:(NSInteger)days;
+
+//
 // Information Logging
 //
-- (void) info:(NSString*)format, ...;
+- (void) info:(NSString*)logString;
 
 //
 // Warning Logging
 //
-- (void) warning:(NSString*)format, ...;
+- (void) warning:(NSString*)logString;
 
 //
 // Error Logging
 //
-- (void) error:(NSString*)format, ...;
+- (void) error:(NSString*)logString;
 
 //
 // Debug items Logging
 //
-- (void) debug:(NSString*)format, ...;
+- (void) debug:(NSString*)logString;
 
 //
 // Trace Logging
 //
-- (void) trace:(NSString*)format, ...;
+- (void) trace:(NSString*)logString;
+
 
 @end

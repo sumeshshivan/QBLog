@@ -15,3 +15,4 @@ void QBLogInfo(NSString *str,...);
 void QBLogTrace(NSString *str,...);
 void QBLogDebug(NSString *str,...);
 void QBLogSetLevel(QLogLevel level);
+void QBLogClear(NSInteger days);
