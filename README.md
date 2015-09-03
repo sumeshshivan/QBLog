@@ -35,5 +35,6 @@ By default Log Level is set to QLogLevel_INFO.
 
 * Log files are created on each day with date as file name inside Logs folder under the application's Documents directory.
 * To clear old log files call `QBLogClear(days);`. The log files  prior to that number of days from the present date are deleted.
+
 For example:
 `QBLogClear(2);` clears log files before 2 days.
