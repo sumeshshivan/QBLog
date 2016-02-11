@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 qburst. All rights reserved.
 //
 
+
 #import "ViewController.h"
 #import "QBLogger.h"
 
@@ -22,9 +23,15 @@
     
     
     QBLogClear(2);
-    QBLogSetLevel(QLogLevel_INFO);
+    QBLogSetLevel(QLogLevel_DEBUG);
     
-    QBLogInfo(@"Reached %@", self);
+    // QBLogDebug Log without __PRETTY_FUNCTION and __LINE__
+    QBLogDebug(@"Reached Home");
+    
+    // Methode 1 for QBLogDebug Log with __PRETTY_FUNCTION and __LINE__
+    QBLogDebugDetail(@"Reached Home");
+    // Methode 2 for QBLogDebug Log with __PRETTY_FUNCTION and __LINE__
+    QBLog(QBLogDebug,@"Reached Home");
 }
 
 - (void)didReceiveMemoryWarning {
